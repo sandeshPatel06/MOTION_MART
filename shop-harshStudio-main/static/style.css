@@ -23,13 +23,14 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #ffffff;
+    background-color: #c2c2c2;
     color: rgb(255, 255, 255);
+    border-radius: 20px
 }
 
 .navbar a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(221, 24, 24);
 }
 
 .container {
@@ -95,7 +96,7 @@ h1 {
 
 .navbar-links a.active,
 .navbar-links a:hover {
-    color: #007BFF;
+    color: #000000;
 }
 
 /* Actions: Search & Cart */
