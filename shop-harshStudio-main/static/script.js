@@ -7,7 +7,7 @@ function showProductDetails(name, imagePath, description, price) {
         <h3>${name}</h3>
         <p><strong>Price:</strong> $${price}</p>
         <p>${description}</p>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/+919399613606?text=Name:${name}%0APrice:${price}%0ADetails:${description}" target="_blank">+919399613606</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/+919301885654?text=Name:${name}%0APrice:${price}%0ADetails:${description}" target="_blank">+919399613606</a></p>
     `;
     document.getElementById('productDetailsContent').innerHTML = modalContent;
     // Show the modal

@@ -8,7 +8,7 @@ body {
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #ffecec;
     overflow: hidden;
     padding: 14px 20px;
 }
@@ -19,12 +19,12 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 12px;
 }
 
 .navbar a:hover {
-    background-color: #ddd;
-    color: rgb(215, 243, 104);
+    background-color: #ffffff;
+    color: rgb(255, 255, 255);
 }
 
 .navbar a.active {
@@ -301,7 +301,7 @@ h1 {
 
 .footer-column ul li a {
     text-decoration: none;
-    color: #ccc;
+    color: #ffffff;
     transition: color 0.3s;
 }
 
@@ -400,7 +400,7 @@ h1 {
 
 /* Footer Styling */
 .footer {
-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
 padding: 60px 0;
 text-align: center;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

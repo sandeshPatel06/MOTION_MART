@@ -6,7 +6,7 @@ Welcome to the Product Management System! This system allows administrators to m
 
 ### 1. Install Python and pip
 1. **Download Python:**
-   - Go to the [Python official website](https://www.python.org/).
+   - Go to the [Python official website](https://www.python.org/)
    - Download the latest version of Python for Windows.
 
 2. **Run the Installer:**
