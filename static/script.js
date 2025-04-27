@@ -53,7 +53,7 @@ function viewProductDetails(productId) {
       const productDetailsContent = `
         <h2>${product.name}</h2>
         <img src="${product.image_url}" alt="${product.name}" />
-        <p><strong>Price:</strong> $${product.price}</p>
+        <p><strong>Price:</strong>₹ ${product.price}</p>
         <p><strong>Description:</strong> ${product.description}</p>
         <p><strong>WhatsApp:</strong> 
           <a href="https://wa.me/+919399613606?text=Name:${product.name}%0APrice:${product.price}%0ADetails:${product.description}" target="_blank">+919399613606</a>
@@ -107,13 +107,13 @@ function updateCartDisplay(cart) {
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart-item");
     cartItem.innerHTML = `
-      <p><strong>${item.name}</strong> - $${item.price} x ${item.quantity}</p>
+      <p><strong>${item.name}</strong> - ${item.price} x ${item.quantity}</p>
       <button onclick="removeFromCart('${productId}')">Remove</button>
     `;
     cartContainer.appendChild(cartItem);
   }
 
-  document.getElementById("cartTotal").textContent = `Total: $${totalAmount.toFixed(2)}`;
+  document.getElementById("cartTotal").textContent = `Total: ${totalAmount.toFixed(2)}`;
 }
 
 function removeFromCart(productId) {
