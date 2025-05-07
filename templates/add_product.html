@@ -3,118 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Add a new product to Motion Mart" />
     {% include 'header.html' %}
-    <style>
-      /* Styles specifically for the Add Product page container and form */
-      .container {
-        max-width: 600px; /* Limit width for the form container */
-        margin: 50px auto; /* Center the container */
-        padding: 30px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border: none; /* Override any general container border if needed */
-      }
-
-      .container h2 {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-group label {
-        display: block;
-        font-size: 16px;
-        color: #555;
-        margin-bottom: 8px;
-      }
-
-      .form-group input[type="text"],
-      .form-group input[type="number"],
-      .form-group input[type="file"],
-      .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box; /* Ensures padding doesn't expand width */
-      }
-
-      .form-group textarea {
-        resize: vertical;
-        min-height: 80px;
-      }
-
-      /* Style the submit button within this form */
-      .container form button.btn { /* Be specific */
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-        width: 100%;
-        transition: background-color 0.3s ease;
-        margin-top: 10px; /* Add some space above the button */
-      }
-
-      .container form button.btn:hover {
-        background-color: #0056b3;
-      }
-
-      /* Responsive adjustments */
-      @media screen and (max-width: 768px) {
-        .container {
-          width: 95%;
-          padding: 20px;
-          margin: 30px auto;
-        }
-
-        .form-group {
-          margin-bottom: 15px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_product.css') }}">
   </head>
 
   <body>
     {% include 'navbar.html'%}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            const feedback = document.getElementById('formFeedback');
+            feedback.innerHTML = "{{ message }}";
+            feedback.className = "form-feedback {{ 'success' if category == 'success' else 'error' }}";
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
     <div class="container">
-      <h2>Add Product</h2>
-      <form action="{{ url_for('add_product') }}" method="post" enctype="multipart/form-data">
+      <h1 class="page-title">Add New Product</h1>
+      
+      <!-- Form feedback message -->
+      <div id="formFeedback" class="form-feedback"></div>
+      
+      <form id="addProductForm" action="{{ url_for('add_product') }}" method="post" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="name">Product Name:</label>
-          <input type="text" id="name" name="name" required />
+          <label for="name">Product Name</label>
+          <input type="text" id="name" name="name" class="form-control" required />
         </div>
+        
         <div class="form-group">
-          <label for="price">Price:</label>
-          <input type="number" id="price" name="price" required />
+          <label for="price">Price (₹)</label>
+          <input type="number" id="price" name="price" class="form-control" min="0" step="0.01" required />
         </div>
+        
         <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            rows="3"
-            required
-          ></textarea>
+          <label for="description">Description</label>
+          <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
         </div>
+        
         <div class="form-group">
-          <label for="image">Image:</label>
-          <input type="file" id="image" name="file" required />
+          <label for="image">Product Image</label>
+          <div class="file-input-wrapper">
+            <label for="image" class="file-input-label">
+              <span>Choose a file or drag it here</span>
+            </label>
+            <input type="file" id="image" name="file" class="file-input" accept="image/*" required />
+          </div>
+          <div id="fileName" class="file-name"></div>
+          
+          <!-- Image preview area -->
+          <div id="imagePreview" class="image-preview">
+            <img id="previewImg" src="#" alt="Preview" />
+          </div>
         </div>
-        <button type="submit" class="btn">Add Product</button> <!-- Changed button text for clarity -->
+        
+        <button type="submit" class="btn-submit">Add Product</button>
       </form>
     </div>
+    
     {% include 'footer.html'%}
+    
+    <script>
+      // Show file name when selected
+      document.getElementById('image').addEventListener('change', function(e) {
+        const fileName = e.target.files[0] ? e.target.files[0].name : 'No file selected';
+        document.getElementById('fileName').textContent = fileName;
+        
+        // Show image preview
+        if (e.target.files && e.target.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(event) {
+            document.getElementById('previewImg').src = event.target.result;
+            document.getElementById('imagePreview').style.display = 'block';
+          }
+          
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      });
+      
+      // Form submission with feedback
+      document.getElementById('addProductForm').addEventListener('submit', function(e) {
+        // You can add client-side validation here if needed
+      });
+      
+      // Show feedback if there's a Flask message
+      <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            const feedback = document.getElementById('formFeedback');
+            feedback.innerHTML = "{{ message }}";
+            feedback.className = "form-feedback {{ 'success' if category == 'success' else 'error' }}";
+          {% endfor %}
+        {% endif %}
+      {% endwith %} -->
+    </script>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

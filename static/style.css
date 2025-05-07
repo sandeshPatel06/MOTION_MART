@@ -1,0 +1,145 @@
+/* Additional styles for WhatsApp link and cart items */
+
+/* WhatsApp link styling */
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25D366;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.whatsapp-link:hover {
+  background-color: #128C7E;
+}
+
+/* Cart page styles */
+.cart-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container h2 {
+  color: #1a2238;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+#cartTotal {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a2238;
+}
+
+.clear-cart {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.clear-cart:hover {
+  background-color: #e9ecef;
+}
+
+.checkout-btn {
+  background-color: #ff6a3d;
+  color: white;
+}
+
+.checkout-btn:hover {
+  background-color: #f05a2d;
+}
+
+.remove-btn {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.remove-btn:hover {
+  background-color: #f5c6cb;
+}
+
+/* Empty cart message */
+.empty-cart-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+}
+
+.empty-cart-message p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.continue-shopping {
+  background-color: #1a2238;
+  color: white;
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.continue-shopping:hover {
+  background-color: #111827;
+}
+
+/* Mobile responsiveness for cart */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .cart-item p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cart-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  #cartTotal {
+    margin-bottom: 1rem;
+  }
+}
