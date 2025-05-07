@@ -33,15 +33,15 @@
       <li class="nav-item">
         <a href="/contact" class="nav-link">Contact</a>
       </li>
-      <li class="nav-item">
-        <a href="/cart" class="nav-link">
-          Cart <span id="cart-count">(0)</span>
-        </a>
-      </li>
       {% if session.get('user_id') %}
-        <li class="nav-item">
-          <a href="{{ url_for(session['role'] + '_dashboard') }}" class="nav-link text-light bg-dark px-3 rounded">
-            {{ session['role'].capitalize() }} Dashboard
+      <li class="nav-item">
+        <a href="{{ url_for(session['role'] + '_dashboard') }}" class="nav-link text-light bg-dark px-3 rounded">
+          {{ session['role'].capitalize() }} Dashboard
+          <li class="nav-item">
+            <a href="/cart" class="nav-link">
+              Cart <span id="cart-count">(0)</span>
+            </a>
+          </li>
           </a>
         </li>
         <li class="nav-item">

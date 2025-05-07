@@ -65,7 +65,7 @@ class User(db.Model):
     role = db.Column(db.String(50), nullable=False)
     
     # Relationship with Address
-    address = db.relationship('Address', backref='user_address', uselist=False)
+    address = db.relationship('Address', back_populates='user', uselist=False, cascade="all, delete-orphan")
 
     # Relationship with Order (Buyer)
     orders = db.relationship('Order', back_populates='buyer')
@@ -82,7 +82,7 @@ class Address(db.Model):
     zip_code = db.Column(db.String(20), nullable=True)
 
     # Relationship with User (backref should not conflict)
-    user = db.relationship('User', backref=db.backref('user_address', uselist=False))
+    user = db.relationship('User', back_populates='address')
 
     def __repr__(self):
         return f'<Address {self.id}>'
@@ -210,7 +210,7 @@ def login():
             session['user_id'] = user.id
             session['role'] = user.role
             session['logged_in'] = True
-            session['last_activity'] = datetime.utcnow()
+            
 
             app.logger.info(f'User {username} logged in successfully')
             flash('Login successful!', 'success')
@@ -789,5 +789,4 @@ def search():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=False)
-
+    app.run(host='0.0.0.0',debug=True)

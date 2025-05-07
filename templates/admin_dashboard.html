@@ -4,18 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - MOTION_MART</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Removed Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Link to your custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
     <style>
-        /* Removed custom CSS to use Bootstrap classes */
+        /* Basic reset and body styling (can be expanded) */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f8f9fa; /* Light background */
+            color: #212529; /* Default text color */
+            line-height: 1.5;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
     </style>
 </head>
-<body class="bg-light">
-    <div class="container-fluid">
-        <div class="row">
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-layout">
             <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 px-0 bg-light border-end">
-                <div class="p-3">
+            <aside class="sidebar">
+                <div class="sidebar-content">
                     <h4 class="mb-4">
                         <i class="bi bi-shop"></i> Admin Panel
                     </h4>
@@ -52,10 +65,10 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </aside>
 
             <!-- Main Content -->
-            <div class="col-md-9 col-lg-10 p-4">
+            <main class="main-content">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2>Dashboard Overview</h2>
                     <div class="d-flex gap-2">
@@ -69,10 +82,10 @@
                 </div>
 
                 <!-- Stats Cards -->
-                <div class="row mb-4">
-                    <div class="col-md-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
+                <div class="stats-grid mb-4">
+                    <div class="stat-card-wrapper">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="text-muted mb-2">Total Orders</h6>
@@ -85,9 +98,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
+                    <div class="stat-card-wrapper">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="text-muted mb-2">Total Users</h6>
@@ -100,9 +113,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
+                    <div class="stat-card-wrapper">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="text-muted mb-2">Total Products</h6>
@@ -115,9 +128,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
+                    <div class="stat-card-wrapper">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="text-muted mb-2">Revenue</h6>
@@ -133,13 +146,13 @@
                 </div>
 
                 <!-- Recent Orders -->
-                <div class="card">
-                    <div class="card-header bg-white">
+                <div class="card recent-orders-card">
+                    <div class="card-header">
                         <h5 class="mb-0">Recent Orders</h5>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-content p-0">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0">
+                            <table class="table">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Order ID</th>
@@ -158,7 +171,7 @@
                                         <td>{{ order.buyer.username }}</td>
                                         <td>{{ order.product.name }}</td>
                                         <td>${{ order.product.price * order.quantity }}</td>
-                                        <td>
+                                        <td class="status-cell">
                                             <span class="badge bg-{{ order.status.lower() }}">
                                                 {{ order.status }}
                                             </span>
@@ -176,11 +189,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
-
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
